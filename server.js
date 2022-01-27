@@ -19,7 +19,7 @@ const port = argv['port'] || 3000
 fs.readFile('./www/index.html', 'utf8', (err,data) => {
     if (err) {
         console.error(err)
-        exit(1)
+        process.exit(1)
         return
     }
 
