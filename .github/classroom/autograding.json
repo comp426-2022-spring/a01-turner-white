@@ -1,9 +1,9 @@
 {
   "tests": [
     {
-      "name": "Does it work? (i.e. install, set port, run)",
-      "setup": "npm install && TESTPORT=$(shuf -i 2000-65000 -n 1)",
-      "run": "node server.js --port=$TESTPORT",
+      "name": "Testing Autograder",
+      "setup": "SHELL=/bin/bash",
+      "run": "echo \"THIS IS ONLY A TEST. SCORES MAY ADJUST IF AUTOGRADER IS UPDATED\"",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -11,24 +11,54 @@
       "points": null
     },
     {
-      "name": "Port check",
-      "setup": "",
-      "run": "echo $TESTPORT",
+      "name": "Run server listening on randomly-assigned port",
+      "setup": "SHELL=/bin/bash && npm install",
+      "run": "PORT=\"$(shuf -i 2000-65535 -n 1)\"; (timeout --signal=SIGINT 5 node server.js --port=$PORT; exit 0) & sleep 1s && curl -vI http://localhost:${PORT} && sleep 5s",
       "input": "",
-      "output": "",
-      "comparison": "included",
+      "output": "[Pp]ort(\\s|\\S)([0-9]{4,5})\\nHTTP\\/(1.1|2) 200(\\sOK)?\\nContent-Type: text\\/html",
+      "comparison": "regex",
       "timeout": 10,
-      "points": null
+      "points": 10000
     },
     {
-      "name": "curl header",
+      "name": "Status code",
       "setup": "",
-      "run": "curl -I http://localhost:$TESTPORT",
+      "run": "PORT=\"$(shuf -i 2000-65535 -n 1)\"; (timeout --signal=SIGINT 5 node server.js --port=$PORT; exit 0) & sleep 1s && curl -I http://localhost:${PORT} && sleep 5s",
       "input": "",
-      "output": "",
-      "comparison": "included",
+      "output": "HTTP\\/(1.1|2)\\s*200\\s*(OK)?",
+      "comparison": "regex",
       "timeout": 10,
-      "points": null
+      "points": 10000
+    },
+    {
+      "name": "Content type",
+      "setup": "",
+      "run": "PORT=\"$(shuf -i 2000-65535 -n 1)\"; (timeout --signal=SIGINT 5 node server.js --port=$PORT; exit 0) & sleep 1s && curl -I http://localhost:${PORT} && sleep 5s",
+      "input": "",
+      "output": "Content-Type: text\\/html",
+      "comparison": "regex",
+      "timeout": 10,
+      "points": 10000
+    },
+    {
+      "name": "Table check",
+      "setup": "",
+      "run": "PORT=\"$(shuf -i 2000-65535 -n 1)\"; (timeout --signal=SIGINT 5 node server.js --port=$PORT; exit 0) & sleep 1s && curl -v http://localhost:${PORT} && sleep 5s",
+      "input": "",
+      "output": "<td>[Zz]<\\/td>",
+      "comparison": "regex",
+      "timeout": 10,
+      "points": 10000
+    },
+    {
+      "name": "Error handling",
+      "setup": "",
+      "run": "mv www wwwtf; PORT=\"$(shuf -i 2000-65535 -n 1)\"; node server.js --port=$PORT 2>&1",
+      "input": "",
+      "output": "[Ee]r{2}or.*no\\ssuch\\sfile\\sor\\sdirectory.*\\.\\/www\\/index\\.html",
+      "comparison": "regex",
+      "timeout": 10,
+      "points": 10000
     }
   ]
 }
