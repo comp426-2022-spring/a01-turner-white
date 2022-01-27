@@ -55,7 +55,7 @@
       "setup": "",
       "run": "mv www wwwtf; PORT=\"$(shuf -i 2000-65535 -n 1)\"; node server.js --port=$PORT 2>&1",
       "input": "",
-      "output": "[E|e]r{2}or",
+      "output": "[Ee]r{2}or.*no\\ssuch\\sfile\\sor\\sdirectory.*\\.\\/www\\/index\\.html",
       "comparison": "regex",
       "timeout": 10,
       "points": 10000
