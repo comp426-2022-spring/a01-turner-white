@@ -29,6 +29,36 @@
       "comparison": "regex",
       "timeout": 10,
       "points": 10000
+    },
+    {
+      "name": "Content type",
+      "setup": "",
+      "run": "PORT=\"$(shuf -i 2000-65535 -n 1)\"; (timeout --signal=SIGINT 5 node server.js --port=$PORT; exit 0) & sleep 1s && curl -I http://localhost:${PORT} && sleep 5s",
+      "input": "",
+      "output": "Content-Type: text\\/html",
+      "comparison": "regex",
+      "timeout": 10,
+      "points": 10000
+    },
+    {
+      "name": "Table check",
+      "setup": "",
+      "run": "PORT=\"$(shuf -i 2000-65535 -n 1)\"; (timeout --signal=SIGINT 5 node server.js --port=$PORT; exit 0) & sleep 1s && curl -v http://localhost:${PORT} && sleep 5s",
+      "input": "",
+      "output": "<td>[Zz]<\\/td>",
+      "comparison": "regex",
+      "timeout": 10,
+      "points": 10000
+    },
+    {
+      "name": "Error handling",
+      "setup": "",
+      "run": "mv www wwwtf; PORT=\"$(shuf -i 2000-65535 -n 1)\"; node server.js --port=$PORT",
+      "input": "",
+      "output": "[E|e]r{2}or",
+      "comparison": "regex",
+      "timeout": 10,
+      "points": 10000
     }
   ]
 }
