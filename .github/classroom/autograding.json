@@ -63,7 +63,7 @@
     {
       "name": "Error problem and fix. See message below.",
       "setup": "",
-      "run": "printf \"If your server script is failing the last test, remove `process.exit(1)`\" ; printf \"from the script entirely. It is causing the autograder to catch\" ; printf \"the error that it is sending, which the autograder does by design.\" ; printf \"Since it is an error, it makes the autograder fail the test.\" ; printf \"\" ; printf \"The problem with this approach is that I am INTENTIONALLY creating\" ; printf \"the conditions for an error to see how you are doing error handling.\" ; printf \"\" ; printf \"¯\\_(ツ)_/¯\" ; printf \"\" ; printf \"So, it is totally fine to remove `process.exit(1)` entirely.\" ",
+      "run": "printf \"If your server script is failing the last test, remove process.exit(1)\\n\" ; printf \"from the script entirely. It is causing the autograder to catch\\n\" ; printf \"the error that it is sending, which the autograder does by design.\\n\" ; printf \"Since it is an error, it makes the autograder fail the test.\\n\" ; printf \"\\n\" ; printf \"The problem with this approach is that I am INTENTIONALLY creating\\n\" ; printf \"the conditions for an error to see how you are doing error handling.\\n\" ; printf \"\\n\" ; printf \"¯\\_(ツ)_/¯\\n\" ; printf \"\\n\" ; printf \"So, it is totally fine to remove process.exit(1) entirely.\\n\"",
       "input": "",
       "output": "",
       "comparison": "included",
