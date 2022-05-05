@@ -1,14 +1,14 @@
 {
   "tests": [
     {
-      "name": "Run server listening on randomly&#45;assigned port",
+      "name": "Run server listening on randomly assigned port",
       "setup": "SHELL=/bin/bash && npm install",
       "run": "PORT=\"$(shuf -i 2000-65535 -n 1)\"; (timeout --signal=SIGINT 5 node server.js --port=$PORT; exit 0) & sleep 1s && curl -vI http://localhost:${PORT} && sleep 5s",
       "input": "",
       "output": "[Pp]ort(\\s|\\S)([0-9]{4,5})\\nHTTP\\/(1.1|2) 200(\\sOK)?\\nContent-Type: text\\/html",
       "comparison": "regex",
       "timeout": 10,
-      "points": 15000
+      "points": 16666
     },
     {
       "name": "Status code",
@@ -18,7 +18,7 @@
       "output": "HTTP\\/(1.1|2)\\s*200\\s*(OK)?",
       "comparison": "regex",
       "timeout": 10,
-      "points": 15000
+      "points": 16666
     },
     {
       "name": "Content type",
@@ -28,7 +28,7 @@
       "output": "Content-Type: text\\/html",
       "comparison": "regex",
       "timeout": 10,
-      "points": 15000
+      "points": 16667
     },
     {
       "name": "Table check",
@@ -38,7 +38,7 @@
       "output": "<td>[Zz]<\\/td>",
       "comparison": "regex",
       "timeout": 10,
-      "points": 15000
+      "points": 13889
     },
     {
       "name": "Error handling",
@@ -48,7 +48,7 @@
       "output": "[Ee]r{2}or.*no\\ssuch\\sfile\\sor\\sdirectory.*\\.\\/www\\/index\\.html",
       "comparison": "regex",
       "timeout": 10,
-      "points": 15000
+      "points": 13889
     },
     {
       "name": "Error problem and fix. See message below.",
