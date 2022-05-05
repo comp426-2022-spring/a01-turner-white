@@ -38,7 +38,7 @@
       "output": "<td>[Zz]<\\/td>",
       "comparison": "regex",
       "timeout": 10,
-      "points": 13889
+      "points": 16667
     },
     {
       "name": "Error handling",
@@ -48,7 +48,7 @@
       "output": "[Ee]r{2}or.*no\\ssuch\\sfile\\sor\\sdirectory.*\\.\\/www\\/index\\.html",
       "comparison": "regex",
       "timeout": 10,
-      "points": 13889
+      "points": 16667
     },
     {
       "name": "Error problem and fix. See message below.",
